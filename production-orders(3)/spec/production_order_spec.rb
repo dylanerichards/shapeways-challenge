@@ -2,18 +2,19 @@ require "spec_helper"
 require_relative "../production_order.rb"
 
 describe ProductionOrder do
-  let(:production_order) { ProductionOrder.new }
-
   describe ".childless_orders" do
     it "returns all childless orders in the collection" do
-      production_order1 = ProductionOrder.new(id: 1)
-      production_order2 = ProductionOrder.new(id: 2, parent_id: 1)
-      production_order3 = ProductionOrder.new(id: 3, parent_id: 2)
-      production_order4 = ProductionOrder.new(id: 4, parent_id: 2)
+      a = ProductionOrder.new(id: "a")
+      b = ProductionOrder.new(id: "b", parent_id: "d")
+      c = ProductionOrder.new(id: "c", parent_id: "a")
+      d = ProductionOrder.new(id: "d")
+      e = ProductionOrder.new(id: "e", parent_id: "c")
+      f = ProductionOrder.new(id: "f", parent_id: "a")
+      g = ProductionOrder.new(id: "g")
 
-      collection = [production_order1, production_order2, production_order3, production_order4]
+      collection = [a, b, c, d, e, f, g]
 
-      expect(ProductionOrder.childless_orders(collection)).to eq [production_order3, production_order4]
+      expect(ProductionOrder.childless_orders(collection)).to eq [b, e, f, g]
     end
   end
 end
