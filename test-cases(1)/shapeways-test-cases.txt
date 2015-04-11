@@ -1,0 +1,22 @@
+Test cases for user account registration
+
+- activated attribute of new user instances should begin false
+- test that confirmation email was sent to user
+- user.activate changes the activated flag to true
+- if user is activated, test that they can see the dashboard
+- if user is not activated, test that they can't see the dashboard
+
+Validations
+  - presence
+    - email
+    - username
+    - password
+  - uniqueness
+    - email
+    - username
+  - length
+    - password
+  - format
+    - email
+
+If any of these validations fail, the user record should not be saved
